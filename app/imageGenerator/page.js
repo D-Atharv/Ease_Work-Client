@@ -23,7 +23,14 @@ const ImageTaker = () => {
         method: "POST",
         body: formData,
       });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
       const result = await response.json();
+      console.log(result); 
+
       if (result.success) {
         alert("Image uploaded successfully!");
       } else {
@@ -31,6 +38,7 @@ const ImageTaker = () => {
       }
     } catch (error) {
       console.error("Error uploading image:", error);
+      alert("An error occurred while uploading the image.");
     }
   };
 
